@@ -1,0 +1,15 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 1%;
+    background-color: #f4f4f4;
+    font-weight: bolder;
+}
+
+h1,
+h2 {
+    font-size: 2em;
+    color: blueviolet;
+    text-align: center;
+    margin: 10px 0;
+}
