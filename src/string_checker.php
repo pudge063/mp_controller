@@ -27,7 +27,7 @@ class StringChecker
         $history[] = [
             'iteration' => $this->iterations,
             'input' => implode("", $input),
-            'stack' => implode("", $stack)
+            'stack' => implode("", array_reverse($stack))
         ];
 
         // если магазин и строка пусты, строка принадлежит грамматике
@@ -83,7 +83,7 @@ class StringChecker
         }, $this->paths[0]);
 
         echo "<div class='container'>";
-        echo "<h2>Распознавание строки МП-автоматом</h2>";
+        echo "<h3 style='text-align:center;'>Итоговая таблица распознавания</h3>";
         echo "<table border='1'>
                 <tr>
                     <th>Номер итерации</th>
