@@ -24,12 +24,12 @@ $G = array(
     array('S', 'R', 'F', 'Y', 'L', 'Z'),
     array('a', 'b', '{', '}', '[', ']'),
     array(
-        "S->{Y|[Y",
+        "S->{R|[R|{|[]",
         "R->a|{F}|bb|aL|aZ|{F}Z|bbZ|aLZ",
         "Z->aLZ|aL",
         "F->{F}|bb|}",
         "L->}|]",
-        "Y->R|"
+        // "Y->R|"
     ),
     'S'
 );

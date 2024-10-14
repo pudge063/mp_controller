@@ -2,12 +2,12 @@
 
 // правила грамматики
 $rules = [
-    "S" => ["{Y", "[Y"],
+    "S" => ["{R", "[R", "{", "["],
     "R" => ["a", "{F}", "bb", "aL", "aZ", "{F}Z", "bbZ", "aLZ"],
     "Z" => ["aLZ", "aL"],
     "F" => ["{F}", "bb", "}"],
     "L" => ["}", "]"],
-    "Y" => ["R", "eps"],
+    // "Y" => ["R", "eps"],
 ];
 
 // Исходная строка
@@ -53,6 +53,7 @@ function backtracking($currentString, $rules, &$steps)
         // Генерируем новую строку, заменяя правую часть на нетерминал
         $newString = substr_replace($currentString, $replacement['nonTerminal'], $replacement['pos'], strlen($replacement['pattern']));
 
+
         // Записываем шаг
         $steps[] = [
             'iteration' => count($steps) + 1,
@@ -61,32 +62,35 @@ function backtracking($currentString, $rules, &$steps)
             'stack' => "eps"
         ];
 
+        // echo count($steps) . " " . $newString . "<br>";
+
         // Рекурсивный вызов для новой строки
         if (backtracking($newString, $rules, $steps)) {
             return true;
         }
 
-        // Если это не привело к решению, удаляем шаг
+        // если это не привело к решению, удаляем шаг
         array_pop($steps);
     }
 
     return false;
 }
 
-// Массив для записи шагов
+// массив для записи шагов
 $steps = [];
 
-// Заполняем начальные строки
-$stack = ""; // Начальное состояние стека
+// заполняем начальные строки
+$stack = ""; // еачальное состояние стека
 for ($i = 0; $i < strlen($input); $i++) {
-    $currentInput = substr($input, $i); // Текущая входная строка
+    $currentInput = substr($input, $i); // текущая входная строка
     $steps[] = [
         'iteration' => $i + 1,
         'state' => 'q',
         'string' => $stack,
         'stack' => $currentInput
     ];
-    $stack .= $input[$i]; // Добавляем символ в стек
+    $stack .= $input[$i]; // добавляем символ в стек
+    // echo $i . " " . $input[$i] . "<br>";
 }
 
 $steps[] = [
@@ -95,6 +99,7 @@ $steps[] = [
     'string' => $stack,
     'stack' => 'eps'
 ];
+// echo count($steps) + 1 . " " . $stack . "<br>";
 
 // Запускаем алгоритм бэктрекинга
 if (backtracking($input, $rules, $steps)) {
