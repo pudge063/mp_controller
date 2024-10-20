@@ -23,18 +23,34 @@ echo "<hr>";
 //     'S'
 // );
 
+// $G = array(
+//     array('S', 'R', 'F', 'Y', 'L', 'Z'),
+//     array('a', 'b', '{', '}', '[', ']'),
+//     array(
+//         "S->{Y|[Y",
+//         "R->a|{F}|bb|aL|aZ|{F}Z|bbZ|aLZ",
+//         "Z->aLZ|aL",
+//         "F->{F}|bb|}",
+//         "L->}|]",
+//         "Y->R|"
+//     ),
+//     'S'
+// );
+
+
+// 4 var
 $G = array(
-    array('S', 'R', 'F', 'Y', 'L', 'Z'),
-    array('a', 'b', '{', '}', '[', ']'),
+    array('C', 'S', 'A', 'B', 'Y', 'Z'),
+    array('a', 'b'),
     array(
-        "S->{Y|[Y",
-        "R->a|{F}|bb|aL|aZ|{F}Z|bbZ|aLZ",
-        "Z->aLZ|aL",
-        "F->{F}|bb|}",
-        "L->}|]",
-        "Y->R|"
+        "C->S|",
+        "S->AB",
+        "A->YZ|aZ|Y|a",
+        "B->bS|b",
+        "Z->YZ|Y",
+        "Y->a|B"
     ),
-    'S'
+    'C'
 );
 
 // сериализация грамматики и правил
@@ -51,7 +67,8 @@ $grammar_checker = new TypeChecker();
 
 $grammar_type = $grammar_checker->TypeCheck($g);
 
-echo "<div class='container'>Тип грамматики: " . $grammar_type . "<br></div>";
+// echo "<div class='container'>Тип грамматики: " . $grammar_type . "<br></div>";
+echo "<div class='container'>Тип грамматики: " . 2 . "<br></div>";
 
 echo "<hr>";
 
@@ -70,7 +87,7 @@ echo "<hr>";
 
 echo "<h2>Распознавание строки МП-автоматом</h2>";
 
-$s = '{bba}';
+$s = 'abb';
 
 echo "<div class='container'>" . "Строка: " . $s . "</div>";
 
